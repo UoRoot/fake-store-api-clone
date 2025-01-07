@@ -1,6 +1,6 @@
 package com.fakestoreapi.clone.infrastructure.persistence.entities;
 
-import com.fakestoreapi.clone.infrastructure.persistence.entities.audit.BaseEntity;
+import com.fakestoreapi.clone.infrastructure.persistence.entities.common.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

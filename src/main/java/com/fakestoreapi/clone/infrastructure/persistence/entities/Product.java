@@ -2,10 +2,13 @@ package com.fakestoreapi.clone.infrastructure.persistence.entities;
 
 import java.math.BigDecimal;
 
-import com.fakestoreapi.clone.infrastructure.persistence.entities.audit.BaseEntity;
+import com.fakestoreapi.clone.infrastructure.persistence.entities.common.BaseEntity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +36,7 @@ public class Product extends BaseEntity {
     @Column(name = "image", length = 500)
     private String image;
 
-    @Column(name = "category", length = 100)
-    private String category;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 }

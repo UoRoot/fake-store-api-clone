@@ -3,7 +3,7 @@ package com.fakestoreapi.clone.infrastructure.persistence.entities;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.fakestoreapi.clone.infrastructure.persistence.entities.audit.BaseEntity;
+import com.fakestoreapi.clone.infrastructure.persistence.entities.common.BaseEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
