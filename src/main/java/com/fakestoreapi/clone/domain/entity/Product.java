@@ -1,13 +1,15 @@
-package com.fakestoreapi.clone.domain.entities;
+package com.fakestoreapi.clone.domain.entity;
 
 import java.math.BigDecimal;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,12 +19,5 @@ public class Product {
     private BigDecimal price;
     private String description;
     private String image;
-    private String category;
-    private Rating rating;
-
-    @Data
-    static class Rating {
-        private String rate;
-        private String count;
-    }
+    private Category category;
 }
