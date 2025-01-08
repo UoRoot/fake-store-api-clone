@@ -8,4 +8,6 @@ public interface ProductRepository {
 
     Optional<Product> findById(Long id);
 
+    Product save(Product product);
+
 }

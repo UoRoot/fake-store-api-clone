@@ -6,6 +6,8 @@ import com.fakestoreapi.clone.domain.entity.Product;
 
 public interface IProductService {
 
+    Product createProduct(Product product);
+
     Optional<Product> getProduct(Long id);
 
 }
