@@ -26,15 +26,15 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cart extends BaseEntity {
+public class CartEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private UserEntity user;
 
     @Column(name = "date", nullable = false)
     private LocalDateTime date;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cart_id")
-    private List<CartItem> cartItems;
+    private List<CartItemEntity> cartItems;
 }
