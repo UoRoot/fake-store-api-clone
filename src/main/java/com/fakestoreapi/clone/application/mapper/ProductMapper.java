@@ -2,6 +2,7 @@ package com.fakestoreapi.clone.application.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 import com.fakestoreapi.clone.application.dto.request.ProductRequest;
 import com.fakestoreapi.clone.application.dto.response.ProductResponse;
@@ -9,7 +10,7 @@ import com.fakestoreapi.clone.domain.entity.Category;
 import com.fakestoreapi.clone.domain.entity.Product;
 import com.fakestoreapi.clone.infrastructure.persistence.entities.ProductEntity;
 
-@Mapper
+@Mapper(uses = { CategoryMapper.class })
 public interface ProductMapper {
     @Mapping(target = "category", source = "category.name")
     ProductResponse toResponse(Product product);
