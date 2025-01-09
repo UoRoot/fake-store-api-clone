@@ -40,7 +40,20 @@ public class ProductRepositoryImpl implements ProductRepository {
     }
 
     @Override
+    public Product update(Product product) {
+        ProductEntity entity = jpaProductRepository.findById(product.getId()).get();
+        mapper.updateEntity(product, entity);
+        return mapper.toDomain(jpaProductRepository.save(entity));
+    }
+
+    @Override
     public void delete(Long id) {
         jpaProductRepository.deleteById(id);
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        return jpaProductRepository.existsById(id);
+    }
+
 }
