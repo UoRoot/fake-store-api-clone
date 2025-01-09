@@ -1,6 +1,7 @@
 package com.fakestoreapi.clone.api.controllers.v1;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +39,14 @@ public class ProductController {
                 .toUri();
 
         return ResponseEntity.created(location).body(mapper.toResponse(created));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductResponse>> getAllProducts() {
+        return ResponseEntity.ok().body(productService.getAllProducts()
+            .stream()
+            .map(mapper::toResponse)
+            .toList());
     }
 
     @GetMapping("/{id}")

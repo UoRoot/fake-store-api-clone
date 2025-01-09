@@ -1,5 +1,6 @@
 package com.fakestoreapi.clone.infrastructure.persistence.repository.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
@@ -28,5 +29,13 @@ public class ProductRepositoryImpl implements ProductRepository {
     public Optional<Product> findById(Long id) {
         return jpaProductRepository.findById(id)
                 .map(mapper::toDomain);
+    }
+
+    @Override
+    public List<Product> findAll() {
+        return jpaProductRepository.findAll()
+                .stream()
+                .map(mapper::toDomain)
+                .toList();
     }
 }
