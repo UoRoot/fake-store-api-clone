@@ -14,7 +14,7 @@ public class ProductExceptionHandler {
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleProductNotFoundException(ProductNotFoundException ex) {
         ErrorResponse errorResponse = new ErrorResponse(
-                HttpStatus.BAD_REQUEST.value(),
+                HttpStatus.NOT_FOUND.value(),
                 "Resource not found",
                 ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
