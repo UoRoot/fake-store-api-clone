@@ -56,6 +56,26 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     @Transactional
+    public Product updateProduct(Long id, Product product) {
+
+        if (!productRepository.existsById(id)) {
+            throw new ProductNotFoundException("El producto con Id " + id + " no existe");
+        }
+
+        Optional<Category> category = categoryRepository.findById(product.getCategory().getId());
+
+        if (category.isEmpty()) {
+            throw new CategoryNotFoundException("La categoria con Id " +
+                    product.getCategory().getId() + " no existe");
+        }
+
+        product.setId(id);
+        product.setCategory(category.get());
+        return productRepository.update(product);
+    }
+
+    @Override
+    @Transactional
     public Optional<Product> deleteProduct(Long id) {
         Optional<Product> product = productRepository.findById(id);
 
