@@ -23,6 +23,9 @@ public interface ProductMapper {
 
     ProductEntity toEntity(Product product);
 
+    @Mapping(target = "id", ignore = true)
+    void updateEntity(Product product, @MappingTarget ProductEntity entity);
+
     default Category mapIdToCategory(Integer categoryId) {
         if (categoryId == null)
             return null;
