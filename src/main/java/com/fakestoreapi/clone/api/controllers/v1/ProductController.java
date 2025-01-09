@@ -2,6 +2,7 @@ package com.fakestoreapi.clone.api.controllers.v1;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import com.fakestoreapi.clone.application.dto.request.ProductRequest;
 import com.fakestoreapi.clone.application.dto.response.ProductResponse;
 import com.fakestoreapi.clone.application.mapper.ProductMapper;
 import com.fakestoreapi.clone.application.service.interfaces.IProductService;
+import com.fakestoreapi.clone.domain.entity.Product;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -44,9 +46,9 @@ public class ProductController {
     @GetMapping
     public ResponseEntity<List<ProductResponse>> getAllProducts() {
         return ResponseEntity.ok().body(productService.getAllProducts()
-            .stream()
-            .map(mapper::toResponse)
-            .toList());
+                .stream()
+                .map(mapper::toResponse)
+                .toList());
     }
 
     @GetMapping("/{id}")
@@ -56,4 +58,17 @@ public class ProductController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ProductResponse> delete(@PathVariable Long id) {
+        Optional<Product> product = productService.deleteProduct(id);
+
+        if (product.isPresent()) {
+            return ResponseEntity.ok()
+                    .body(product.map(mapper::toResponse).get());
+        }
+
+        return null;
+    }
+
 }

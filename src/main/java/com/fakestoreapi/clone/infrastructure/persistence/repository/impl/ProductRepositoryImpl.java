@@ -38,4 +38,9 @@ public class ProductRepositoryImpl implements ProductRepository {
                 .map(mapper::toDomain)
                 .toList();
     }
+
+    @Override
+    public void delete(Long id) {
+        jpaProductRepository.deleteById(id);
+    }
 }

@@ -47,4 +47,18 @@ public class ProductServiceImpl implements IProductService {
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
+
+    @Override
+    @Transactional
+    public Optional<Product> deleteProduct(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+
+        if (product.isEmpty()) {
+            throw new ProductNotFoundException("El producto con id " + id + " no existe");
+        }
+
+        productRepository.delete(id);
+        
+        return product;
+    }
 }
