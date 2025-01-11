@@ -57,14 +57,13 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ProductResponse> getProduct(@PathVariable Long id) {
-        return productService.getProduct(id)
-                .map(mapper::toResponse)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+        Product product = productService.getProduct(id);
+        return ResponseEntity.ok().body(mapper.toResponse(product));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id, @Valid @RequestBody ProductRequest request) {
+    public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id,
+            @Valid @RequestBody ProductRequest request) {
         var product = mapper.toProduct(request);
         var updated = productService.updateProduct(id, product);
         System.out.println("Esta es la estructura de la categoria: " + updated.getCategory());
@@ -74,32 +73,28 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ProductResponse> delete(@PathVariable Long id) {
-        Optional<Product> product = productService.deleteProduct(id);
+        Product product = productService.deleteProduct(id);
 
-        if (product.isPresent()) {
-            return ResponseEntity.ok()
-                    .body(product.map(mapper::toResponse).get());
-        }
-
-        return null;
+        return ResponseEntity.ok()
+                .body(mapper.toResponse(product));
     }
 
     @GetMapping("/categories")
     public ResponseEntity<List<String>> getProductCategories() {
         return ResponseEntity.ok().body(
                 categoryService.getAllCategories()
-                .stream()
-                .map(c -> c.getName())
-                .toList());
+                        .stream()
+                        .map(c -> c.getName())
+                        .toList());
     }
 
     @GetMapping("/category/{categoryName}")
     public ResponseEntity<List<ProductResponse>> getProductsByCategoryName(@PathVariable String categoryName) {
         return ResponseEntity.ok().body(
                 productService.getProductsByCategoryName(categoryName)
-                .stream()
-                .map(mapper::toResponse)
-                .toList());
+                        .stream()
+                        .map(mapper::toResponse)
+                        .toList());
     }
-    
+
 }

@@ -38,14 +38,14 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     @Transactional(readOnly = true)
-    public Optional<Product> getProduct(Long id) {
+    public Product getProduct(Long id) {
         Optional<Product> product = productRepository.findById(id);
 
         if (product.isEmpty()) {
             throw new ProductNotFoundException("El producto con id " + id + " no existe");
         }
 
-        return productRepository.findById(id);
+        return product.get();
     }
 
     @Override
@@ -76,7 +76,7 @@ public class ProductServiceImpl implements IProductService {
 
     @Override
     @Transactional
-    public Optional<Product> deleteProduct(Long id) {
+    public Product deleteProduct(Long id) {
         Optional<Product> product = productRepository.findById(id);
 
         if (product.isEmpty()) {
@@ -85,10 +85,11 @@ public class ProductServiceImpl implements IProductService {
 
         productRepository.delete(id);
 
-        return product;
+        return product.get();
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<Product> getProductsByCategoryName(String categoryName) {
         return productRepository.findByCategoryName(categoryName);
     }
