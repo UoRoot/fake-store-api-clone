@@ -56,4 +56,12 @@ public class ProductRepositoryImpl implements ProductRepository {
         return jpaProductRepository.existsById(id);
     }
 
+    @Override
+    public List<Product> findByCategoryName(String categoryName) {
+        return jpaProductRepository.findByCategoryName(categoryName)
+            .stream()
+            .map(mapper::toDomain)
+            .toList();
+    }
+
 }

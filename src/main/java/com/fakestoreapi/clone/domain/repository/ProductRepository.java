@@ -9,6 +9,8 @@ public interface ProductRepository {
 
     Optional<Product> findById(Long id);
 
+    List<Product> findByCategoryName(String categoryName);
+
     Product save(Product product);
 
     List<Product> findAll();

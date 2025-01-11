@@ -13,6 +13,8 @@ public interface IProductService {
 
     List<Product> getAllProducts();
 
+    List<Product> getProductsByCategoryName(String categoryName);
+
     Product updateProduct(Long id, Product product);
 
     Optional<Product> deleteProduct(Long id);

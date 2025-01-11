@@ -92,5 +92,14 @@ public class ProductController {
                 .map(c -> c.getName())
                 .toList());
     }
+
+    @GetMapping("/category/{categoryName}")
+    public ResponseEntity<List<ProductResponse>> getProductsByCategoryName(@PathVariable String categoryName) {
+        return ResponseEntity.ok().body(
+                productService.getProductsByCategoryName(categoryName)
+                .stream()
+                .map(mapper::toResponse)
+                .toList());
+    }
     
 }
