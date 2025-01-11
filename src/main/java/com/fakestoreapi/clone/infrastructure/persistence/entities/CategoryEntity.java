@@ -22,7 +22,7 @@ public class CategoryEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(name = "name", unique = true, nullable = false, length = 50)
     private String name;
     
     @Column(name = "image_url", columnDefinition = "TEXT")
