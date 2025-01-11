@@ -1,5 +1,6 @@
 package com.fakestoreapi.clone.infrastructure.persistence.repository.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
@@ -26,6 +27,14 @@ public class CategoryRepositoryImpl implements CategoryRepository {
     public Optional<Category> findById(Integer id) {
         return jpaCategoryRepository.findById(id)
                 .map(mapper::toDomain);
+    }
+
+    @Override
+    public List<Category> findAll() {
+        return jpaCategoryRepository.findAll()
+            .stream()
+            .map(mapper::toDomain)
+            .toList();
     }
 
 }

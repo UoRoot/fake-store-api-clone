@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.fakestoreapi.clone.application.dto.request.ProductRequest;
 import com.fakestoreapi.clone.application.dto.response.ProductResponse;
 import com.fakestoreapi.clone.application.mapper.ProductMapper;
+import com.fakestoreapi.clone.application.service.interfaces.ICategoryService;
 import com.fakestoreapi.clone.application.service.interfaces.IProductService;
 import com.fakestoreapi.clone.domain.entity.Product;
 
@@ -29,6 +30,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductController {
     private final IProductService productService;
+    private final ICategoryService categoryService;
     private final ProductMapper mapper;
 
     @PostMapping
@@ -82,4 +84,13 @@ public class ProductController {
         return null;
     }
 
+    @GetMapping("/categories")
+    public ResponseEntity<List<String>> getProductCategories() {
+        return ResponseEntity.ok().body(
+                categoryService.getAllCategories()
+                .stream()
+                .map(c -> c.getName())
+                .toList());
+    }
+    
 }
