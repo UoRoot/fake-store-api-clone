@@ -9,8 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fakestoreapi.clone.application.service.interfaces.IProductService;
 import com.fakestoreapi.clone.domain.entity.Category;
 import com.fakestoreapi.clone.domain.entity.Product;
-import com.fakestoreapi.clone.domain.exception.category.CategoryNotFoundException;
-import com.fakestoreapi.clone.domain.exception.product.ProductNotFoundException;
+import com.fakestoreapi.clone.domain.exception.ResourceNotFoundException;
 import com.fakestoreapi.clone.domain.repository.CategoryRepository;
 import com.fakestoreapi.clone.domain.repository.ProductRepository;
 
@@ -28,7 +27,7 @@ public class ProductServiceImpl implements IProductService {
         Optional<Category> category = categoryRepository.findById(product.getCategory().getId());
 
         if (category.isEmpty()) {
-            throw new CategoryNotFoundException("La categoria con Id " +
+            throw new ResourceNotFoundException("La categoria con Id " +
                     product.getCategory().getId() + " no existe");
         }
 
@@ -42,7 +41,7 @@ public class ProductServiceImpl implements IProductService {
         Optional<Product> product = productRepository.findById(id);
 
         if (product.isEmpty()) {
-            throw new ProductNotFoundException("El producto con id " + id + " no existe");
+            throw new ResourceNotFoundException("El producto con id " + id + " no existe");
         }
 
         return product.get();
@@ -59,13 +58,13 @@ public class ProductServiceImpl implements IProductService {
     public Product updateProduct(Long id, Product product) {
 
         if (!productRepository.existsById(id)) {
-            throw new ProductNotFoundException("El producto con Id " + id + " no existe");
+            throw new ResourceNotFoundException("El producto con Id " + id + " no existe");
         }
 
         Optional<Category> category = categoryRepository.findById(product.getCategory().getId());
 
         if (category.isEmpty()) {
-            throw new CategoryNotFoundException("La categoria con Id " +
+            throw new ResourceNotFoundException("La categoria con Id " +
                     product.getCategory().getId() + " no existe");
         }
 
@@ -80,7 +79,7 @@ public class ProductServiceImpl implements IProductService {
         Optional<Product> product = productRepository.findById(id);
 
         if (product.isEmpty()) {
-            throw new ProductNotFoundException("El producto con id " + id + " no existe");
+            throw new ResourceNotFoundException("El producto con id " + id + " no existe");
         }
 
         productRepository.delete(id);
