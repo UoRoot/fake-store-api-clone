@@ -24,7 +24,7 @@ public class UserServiceImpl implements IUserService {
         Optional<User> product = userRepository.findById(id);
 
         if (product.isEmpty()) {
-            throw new ResourceNotFoundException("El usuario con id " + id + " no existe");
+            throw new ResourceNotFoundException("User with id " + id + " does not exist");
         }
 
         return product.get();
@@ -55,7 +55,7 @@ public class UserServiceImpl implements IUserService {
         Optional<User> user = userRepository.findById(id);
 
         if (user.isEmpty()) {
-            throw new ResourceNotFoundException("El usuario con id " + id + " no existe");
+            throw new ResourceNotFoundException("User with id " + id + " does not exist");
         }
 
         userRepository.delete(id);
