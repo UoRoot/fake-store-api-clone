@@ -1,4 +1,4 @@
-package com.fakestoreapi.clone.application.dto.response;
+package com.fakestoreapi.clone.application.dto.response.product;
 
 import java.math.BigDecimal;
 

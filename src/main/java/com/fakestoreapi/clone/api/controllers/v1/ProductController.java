@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.fakestoreapi.clone.application.dto.request.ProductRequest;
-import com.fakestoreapi.clone.application.dto.response.ProductResponse;
+import com.fakestoreapi.clone.application.dto.request.product.ProductRequest;
+import com.fakestoreapi.clone.application.dto.response.product.ProductResponse;
 import com.fakestoreapi.clone.application.mapper.ProductMapper;
 import com.fakestoreapi.clone.application.service.interfaces.ICategoryService;
 import com.fakestoreapi.clone.application.service.interfaces.IProductService;

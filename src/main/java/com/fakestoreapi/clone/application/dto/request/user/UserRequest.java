@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class UserSaveDTO {
+public class UserRequest {
 
     @NotBlank(message = "The email is mandatory")
     @Email(message = "The email must be a valid email address")

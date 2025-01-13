@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.fakestoreapi.clone.application.dto.request.user.UserSaveDTO;
+import com.fakestoreapi.clone.application.dto.request.user.UserRequest;
 import com.fakestoreapi.clone.application.dto.response.user.UserResponse;
 import com.fakestoreapi.clone.application.mapper.UserMapper;
 import com.fakestoreapi.clone.application.service.interfaces.IUserService;
@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> createProduct(@Valid @RequestBody UserSaveDTO request) {
+    public ResponseEntity<UserResponse> createProduct(@Valid @RequestBody UserRequest request) {
         var user = mapper.toDomain(request);
         var created = userService.createUser(user);
 
