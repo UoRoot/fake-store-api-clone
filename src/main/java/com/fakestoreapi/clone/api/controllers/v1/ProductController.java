@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,12 +17,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fakestoreapi.clone.application.dto.request.product.ProductRequest;
 import com.fakestoreapi.clone.application.dto.response.product.ProductResponse;
+import com.fakestoreapi.clone.application.dto.validators.CreateValidatorGroup;
+import com.fakestoreapi.clone.application.dto.validators.UpdateValidatorGroup;
 import com.fakestoreapi.clone.application.mapper.ProductMapper;
 import com.fakestoreapi.clone.application.service.interfaces.ICategoryService;
 import com.fakestoreapi.clone.application.service.interfaces.IProductService;
 import com.fakestoreapi.clone.domain.entity.Product;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -33,7 +35,8 @@ public class ProductController {
     private final ProductMapper mapper;
 
     @PostMapping
-    public ResponseEntity<ProductResponse> createProduct(@Valid @RequestBody ProductRequest request) {
+    public ResponseEntity<ProductResponse> createProduct(
+            @Validated(CreateValidatorGroup.class) @RequestBody ProductRequest request) {
         var product = mapper.toProduct(request);
         var created = productService.createProduct(product);
 
@@ -62,10 +65,9 @@ public class ProductController {
 
     @PutMapping("/{id}")
     public ResponseEntity<ProductResponse> updateProduct(@PathVariable Long id,
-            @Valid @RequestBody ProductRequest request) {
+            @Validated(UpdateValidatorGroup.class) @RequestBody ProductRequest request) {
         var product = mapper.toProduct(request);
         var updated = productService.updateProduct(id, product);
-        System.out.println("Esta es la estructura de la categoria: " + updated.getCategory());
 
         return ResponseEntity.ok().body(mapper.toResponse(updated));
     }
