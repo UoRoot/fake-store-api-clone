@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
         ErrorMapResponse errorResponse = new ErrorMapResponse(
                 HttpStatus.BAD_REQUEST.value(),
                 "Validation failed",
-                Map.of("", ""));
+                errors);
 
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
