@@ -46,6 +46,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     @Transactional
     public User updateUser(Long id, User user) {
+
+        if (!userRepository.existsById(id)) {
+            throw new ResourceNotFoundException("User with Id " + id + " does not exist");
+        }
+        user.setId(id);
         return userRepository.update(user);
     }
 
