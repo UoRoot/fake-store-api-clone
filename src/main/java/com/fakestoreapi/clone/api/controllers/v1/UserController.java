@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fakestoreapi.clone.application.dto.request.user.UserRequest;
 import com.fakestoreapi.clone.application.dto.response.user.UserResponse;
+import com.fakestoreapi.clone.application.dto.validators.CreateValidatorGroup;
 import com.fakestoreapi.clone.application.mapper.UserMapper;
 import com.fakestoreapi.clone.application.service.interfaces.IUserService;
 import com.fakestoreapi.clone.domain.entity.User;
@@ -45,7 +47,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest request) {
+    public ResponseEntity<UserResponse> createUser(@Validated(CreateValidatorGroup.class) @RequestBody UserRequest request) {
         var user = mapper.toDomain(request);
         var created = userService.createUser(user);
 
