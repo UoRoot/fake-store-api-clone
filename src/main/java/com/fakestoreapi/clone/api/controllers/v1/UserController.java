@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,13 +31,13 @@ public class UserController {
     private final UserMapper mapper;
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> getProduct(@PathVariable Long id) {
+    public ResponseEntity<UserResponse> getUser(@PathVariable Long id) {
         User user = userService.getUser(id);
         return ResponseEntity.ok().body(mapper.toResponse(user));
     }
 
     @GetMapping
-    public ResponseEntity<List<UserResponse>> getAllProducts() {
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
         return ResponseEntity.ok().body(userService.getAllUsers()
                 .stream()
                 .map(mapper::toResponse)
@@ -44,7 +45,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponse> createProduct(@Valid @RequestBody UserRequest request) {
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest request) {
         var user = mapper.toDomain(request);
         var created = userService.createUser(user);
 
@@ -55,6 +56,15 @@ public class UserController {
                 .toUri();
 
         return ResponseEntity.created(location).body(mapper.toResponse(created));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponse> updateProduct(@PathVariable Long id,
+            @RequestBody UserRequest request) {
+        var user = mapper.toDomain(request);
+        var updated = userService.updateUser(id, user);
+
+        return ResponseEntity.ok().body(mapper.toResponse(updated));
     }
 
     @DeleteMapping("/{id}")
