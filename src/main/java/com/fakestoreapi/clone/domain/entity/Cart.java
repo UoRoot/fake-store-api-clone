@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class Cart {
 
     private Long id;
-    private Long userId;
+    private User user;
     private LocalDateTime date;
     private List<CartItem> products;
     
