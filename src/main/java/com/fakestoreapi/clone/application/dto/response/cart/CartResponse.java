@@ -3,8 +3,6 @@ package com.fakestoreapi.clone.application.dto.response.cart;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.fakestoreapi.clone.domain.entity.Product;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,7 +21,7 @@ public class CartResponse {
 
     @Data
     public static class CartItem {
-        private Product product;
+        private Long productId;
         private Integer quantity;
     }
 

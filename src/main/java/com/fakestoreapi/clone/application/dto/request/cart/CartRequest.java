@@ -19,6 +19,9 @@ public class CartRequest {
     List<CartItem> products;
 
     @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    @Builder
     public static class CartItem {
         private Long productId;
         private Integer quantity;
