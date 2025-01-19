@@ -1,8 +1,5 @@
 package com.fakestoreapi.clone.domain.entity;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,9 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Cart {
+public class CartItem {
     private Long id;
-    private User user;
-    private LocalDate date;
-    private List<CartItem> products;
+    private Product product;
+    private Integer quantity;
 }
