@@ -1,4 +1,4 @@
-package com.fakestoreapi.clone.infrastructure.persistence.impl;
+package com.fakestoreapi.clone.infrastructure.persistence.repository.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +12,6 @@ import com.fakestoreapi.clone.domain.entity.Product;
 import com.fakestoreapi.clone.infrastructure.persistence.entities.CategoryEntity;
 import com.fakestoreapi.clone.infrastructure.persistence.entities.ProductEntity;
 import com.fakestoreapi.clone.infrastructure.persistence.mapper.ProductPersistenceMapper;
-import com.fakestoreapi.clone.infrastructure.persistence.repository.impl.ProductRepositoryImpl;
 import com.fakestoreapi.clone.infrastructure.persistence.repository.interfaces.IProductRepository;
 
 import java.math.BigDecimal;

@@ -1,4 +1,4 @@
-package com.fakestoreapi.clone.infrastructure.persistence.impl;
+package com.fakestoreapi.clone.infrastructure.persistence.repository.impl;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,7 +10,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.fakestoreapi.clone.domain.entity.User;
 import com.fakestoreapi.clone.infrastructure.persistence.entities.UserEntity;
 import com.fakestoreapi.clone.infrastructure.persistence.mapper.UserPersistenceMapper;
-import com.fakestoreapi.clone.infrastructure.persistence.repository.impl.UserRepositoryImpl;
 import com.fakestoreapi.clone.infrastructure.persistence.repository.interfaces.IUserRepository;
 
 import java.util.List;
